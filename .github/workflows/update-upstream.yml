@@ -1,0 +1,30 @@
+name: Sync with Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-customisation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Fetch Upstream Changes
+        run: |
+          git remote add upstream https://github.com/kubernetes-sigs/kubespray.git
+          git fetch upstream --tags
+          LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+          echo "Latest upstream tag: $LATEST_TAG"
+
+      - name: Merge Upstream into Customisation
+        run: |
+          git checkout -b temp-upstream $LATEST_TAG
+          git checkout customisation
+          git merge temp-upstream --no-ff -m "Merge upstream $LATEST_TAG into customisation branch"
+          git checkout customisation -- .gitignore
+          git push origin customisation
+          git branch -d temp-upstream
