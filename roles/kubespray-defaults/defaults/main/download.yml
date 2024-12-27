@@ -100,7 +100,7 @@ github_image_repo: "ghcr.io"
 
 # TODO(mattymo): Move calico versions to roles/network_plugins/calico/defaults
 # after migration to container download
-calico_version: "v3.28.1"
+calico_version: "v3.29.1"
 calico_ctl_version: "{{ calico_version }}"
 calico_cni_version: "{{ calico_version }}"
 calico_policy_version: "{{ calico_version }}"
@@ -122,7 +122,7 @@ kube_ovn_version: "v1.12.21"
 kube_ovn_dpdk_version: "19.11-{{ kube_ovn_version }}"
 kube_router_version: "v2.0.0"
 multus_version: "v4.1.0"
-helm_version: "v3.15.4"
+helm_version: "v3.16.4"
 nerdctl_version: "1.7.7"
 krew_version: "v0.4.4"
 skopeo_version: "v1.16.1"
