@@ -98,7 +98,7 @@ PARSERS = {}
 def _clean_dc(dcname):
     # Consul DCs are strictly alphanumeric with underscores and hyphens -
     # ensure that the consul_dc attribute meets these requirements.
-    return re.sub('[^\w_\-]', '-', dcname)
+    return re.sub(r'[^\w_\-]', '-', dcname)
 
 
 def iterhosts(resources):
@@ -304,7 +304,7 @@ def openstack_host(resource, module_name):
     try:
         if 'metadata.prefer_ipv6' in raw_attrs and raw_attrs['metadata.prefer_ipv6'] == "1":
             attrs.update({
-                'ansible_host': re.sub("[\[\]]", "", raw_attrs['access_ip_v6']),
+                'ansible_host': re.sub(r"[\[\]]", "", raw_attrs['access_ip_v6']),
                 'publicly_routable': True,
             })
         else:
@@ -368,7 +368,7 @@ def iter_host_ips(hosts, ips):
                 'ansible_host': ip,
             })
 
-        if 'use_access_ip' in host[1]['metadata'] and host[1]['metadata']['use_access_ip'] == "0":
+        if 'use_access_ip' in host[1]['metadata'] and host[1]['metadata']['use_access_ip'] == "0" and 'access_ip' in host[1]:
                 host[1].pop('access_ip')
 
         yield host

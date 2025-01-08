@@ -23,10 +23,10 @@
 
 - name: Make interpreter discovery works on Flatcar
   set_fact:
-    ansible_interpreter_python_fallback: "{{ ansible_interpreter_python_fallback + [ '/opt/bin/python' ] }}"
+    ansible_interpreter_python_fallback: "{{ (ansible_interpreter_python_fallback | default([])) + [ '/opt/bin/python' ] }}"
 
 - name: Disable auto-upgrade
-  systemd:
+  systemd_service:
     name: locksmithd.service
     masked: true
     state: stopped
