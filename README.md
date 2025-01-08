@@ -97,7 +97,7 @@ Note: Upstart/SysV init based OS types are not supported.
   - [kubernetes](https://github.com/kubernetes/kubernetes) v1.31.4
   - [etcd](https://github.com/etcd-io/etcd) v3.5.16
   - [docker](https://www.docker.com/) v26.1
-  - [containerd](https://containerd.io/) v1.7.23
+  - [containerd](https://containerd.io/) v1.7.24
   - [cri-o](http://cri-o.io/) v1.31.0 (experimental: see [CRI-O Note](docs/CRI/cri-o.md). Only on fedora, ubuntu and centos based OS)
 - Network Plugin
   - [cni-plugins](https://github.com/containernetworking/plugins) v1.2.0
@@ -112,7 +112,7 @@ Note: Upstart/SysV init based OS types are not supported.
 - Application
   - [cert-manager](https://github.com/jetstack/cert-manager) v1.15.3
   - [coredns](https://github.com/coredns/coredns) v1.11.3
-  - [ingress-nginx](https://github.com/kubernetes/ingress-nginx) v1.11.2
+  - [ingress-nginx](https://github.com/kubernetes/ingress-nginx) v1.12.0
   - [krew](https://github.com/kubernetes-sigs/krew) v0.4.4
   - [argocd](https://argoproj.github.io/) v2.11.0
   - [helm](https://helm.sh/) v3.16.4
@@ -149,10 +149,10 @@ Note: Upstart/SysV init based OS types are not supported.
 Hardware:
 These limits are safeguarded by Kubespray. Actual requirements for your workload can differ. For a sizing guide go to the [Building Large Clusters](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components) guide.
 
-- Master
-  - Memory: 1500 MB
-- Node
-  - Memory: 1024 MB
+- Control Plane
+  - Memory: 2 GB
+- Worker Node
+  - Memory: 1 GB
 
 ## Network Plugins
 
